@@ -32,8 +32,8 @@ export const request = (method, path) => {
             return fetch(url + path, req)
                 .then((res) => {
                     return res.json().then((json) => {
-                        if (res.status >= 500 && (json.message || json[0])) {
-                            throw json.message || json[0];
+                        if (res.status >= 500 && (json.message ?? json[0])) {
+                            throw json.message ?? json[0];
                         }
 
                         if (json.error) {
@@ -67,7 +67,7 @@ export const request = (method, path) => {
                         document.body.removeChild(existingLink);
                     }
 
-                    const filename = res.headers.get('content-disposition')?.match(/filename="(.+)"/)?.[1] || 'download.csv';
+                    const filename = res.headers.get('content-disposition')?.match(/filename="(.+)"/)?.[1] ?? 'download.csv';
                     return res.blob().then((blob) => ({ blob, filename }));
                 })
                 .then((res) => {

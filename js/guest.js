@@ -30,7 +30,7 @@ export const guest = (() => {
     const animation = () => {
         const duration = 15 * 1000;
         const animationEnd = Date.now() + duration;
-        const colors = ["#FFC0CB", "#FF1493", "#C71585"];
+        const colors = ['#FFC0CB', '#FF1493', '#C71585'];
 
         const randomInRange = (min, max) => {
             return Math.random() * (max - min) + min;
@@ -120,9 +120,8 @@ export const guest = (() => {
             storage('tracker').clear();
         }
 
-        const presence = document.getElementById('form-presence');
-        if (presence && information.get('presence') !== undefined) {
-            presence.value = information.get('presence') ? "1" : "2";
+        if (information.get('presence')) {
+            document.getElementById('form-presence').value = information.get('presence') ? '1' : '2';
         }
 
         const info = document.getElementById('information');

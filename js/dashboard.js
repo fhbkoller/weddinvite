@@ -3,6 +3,7 @@ import { util } from './util.js';
 import { admin } from './admin.js';
 import { theme } from './theme.js';
 import { navbar } from './navbar.js';
+import { offline } from './offline.js';
 import { session } from './session.js';
 import { comment } from './comment.js';
 import { pagination } from './pagination.js';
@@ -10,6 +11,7 @@ import { pagination } from './pagination.js';
 document.addEventListener('DOMContentLoaded', () => {
     admin.init();
     theme.init();
+    offline.init();
     pagination.init();
 
     window.like = like;

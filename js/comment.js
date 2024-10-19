@@ -77,7 +77,7 @@ export const comment = (() => {
         const presence = document.getElementById(`form-inner-presence-${id}`);
         if (presence) {
             presence.disabled = true;
-            isPresent = presence.value === "1";
+            isPresent = presence.value === '1';
         }
 
         const form = document.getElementById(`form-${id ? `inner-${id}` : 'comment'}`);
@@ -125,9 +125,8 @@ export const comment = (() => {
             document.getElementById(`inner-${id}`).remove();
             document.getElementById(`content-${id}`).innerHTML = card.convertMarkdownToHTML(util.escapeHtml(form.value));
 
-            const formPresence = document.getElementById('form-presence');
             if (presence) {
-                formPresence.value = isPresent ? "1" : "2";
+                document.getElementById('form-presence').value = isPresent ? '1' : '2';
                 storage('information').set('presence', isPresent);
             }
 
@@ -162,7 +161,7 @@ export const comment = (() => {
         }
 
         const presence = document.getElementById('form-presence');
-        if (!id && presence && presence.value == "0") {
+        if (!id && presence && presence.value == '0') {
             alert('Silakan pilih status kehadiran Anda.');
             return;
         }
@@ -171,7 +170,7 @@ export const comment = (() => {
             name.disabled = true;
         }
 
-        if (presence && presence.value != "0") {
+        if (presence && presence.value != '0') {
             presence.disabled = true;
         }
 
@@ -184,7 +183,7 @@ export const comment = (() => {
         }
 
         const btn = util.disableButton(button);
-        const isPresence = presence ? presence.value === "1" : true;
+        const isPresence = presence ? presence.value === '1' : true;
 
         if (!session.isAdmin()) {
             storage('information').set('name', nameValue);
@@ -274,7 +273,7 @@ export const comment = (() => {
         let isPresent = false;
         const presence = document.getElementById(`form-inner-presence-${id}`);
         if (presence) {
-            isPresent = presence.value === "1";
+            isPresent = presence.value === '1';
         }
 
         let isChecklist = false;
