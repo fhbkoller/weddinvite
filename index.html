@@ -50,7 +50,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
 
     <!-- Preload Resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" as="style">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap"
+        as="style">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         integrity="sha256-2FMn2Zx6PuH5tdBQDRNwrOo60ts5wWPC9R8jK67b3t4=" crossorigin="anonymous" as="style">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"
@@ -59,7 +61,8 @@
         integrity="sha256-5P1JGBOIxI7FBAvT/mb1fCnI5n/NhQKzNUuW7Hq0fMc=" crossorigin="anonymous" as="script">
 
     <!-- Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap">
 
     <!-- Dependencies CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -96,26 +99,23 @@
                 <div class="d-flex position-absolute w-100 h-100">
                     <div class="position-relative overflow-hidden vw-100">
                         <div class="position-absolute h-100 w-100 slide-desktop" style="opacity: 0;">
-                            <img src="./assets/images/placeholder.webp"
-                                data-src="https://picsum.photos/1000/1000?random=7" alt="bg" class="bg-cover-home"
-                                style="mask-image: none; opacity: 30%;">
+                            <img src="./assets/images/placeholder.webp" data-src="./assets/images/casar_photo_8.jpg"
+                                alt="bg" class="bg-cover-home" style="mask-image: none; opacity: 30%;">
                         </div>
                         <div class="position-absolute h-100 w-100 slide-desktop" style="opacity: 0;">
-                            <img src="./assets/images/placeholder.webp"
-                                data-src="https://picsum.photos/1000/1000?random=8" alt="bg" class="bg-cover-home"
-                                style="mask-image: none; opacity: 30%;">
+                            <img src="./assets/images/placeholder.webp" data-src="./assets/images/casar_photo_9.jpg"
+                                alt="bg" class="bg-cover-home" style="mask-image: none; opacity: 30%;">
                         </div>
                         <div class="position-absolute h-100 w-100 slide-desktop" style="opacity: 0;">
-                            <img src="./assets/images/placeholder.webp"
-                                data-src="https://picsum.photos/1000/1000?random=9" alt="bg" class="bg-cover-home"
-                                style="mask-image: none; opacity: 30%;">
+                            <img src="./assets/images/placeholder.webp" data-src="./assets/images/casar_photo_3.jpg"
+                                alt="bg" class="bg-cover-home" style="mask-image: none; opacity: 30%;">
                         </div>
                     </div>
                 </div>
 
                 <div class="text-center p-4 bg-overlay-auto rounded-5">
                     <h2 class="font-esthetic mb-4" style="font-size: 2rem;">Fernando &amp; Bibiana</h2>
-                    <p class="m-0" style="font-size: 1rem;">Sábado, 25 de Dezembro de 2025</p>
+                    <p class="m-0" style="font-size: 1rem;">Sábado, 31 de Dezembro de 2099</p>
                 </div>
             </div>
         </div>
@@ -135,15 +135,14 @@
                         <h1 class="font-esthetic pt-5 pb-4 fw-medium" style="font-size: 2.25rem;">Convite de Casamento
                         </h1>
 
-                        <img src="./assets/images/placeholder.webp" data-src="./assets/images/bg.webp" alt="bg"
-                            onclick="invitation.guest.modal(this)"
-                            class="img-center-crop rounded-circle border border-3 border-light shadow my-4 mx-auto cursor-pointer">
+                        <img src="./assets/images/placeholder.webp" data-src="./assets/images/casar_photo_1.jpg"
+                            alt="bg" onclick="invitation.guest.modal(this)"
+                            class="img-center-crop rounded-circle shadow my-4 mx-auto cursor-pointer">
 
                         <h2 class="font-esthetic my-4" style="font-size: 2.25rem;">Fernando &amp; Bibiana</h2>
-                        <p class="my-2" style="font-size: 1.25rem;">Sábado, 25 de Dezembro de 2025</p>
+                        <p class="my-2" style="font-size: 1.25rem;">Sábado, 31 de Dezembro de 2099</p>
 
-                        <button class="btn btn-outline-auto btn-sm shadow rounded-pill px-3 py-1"
-                            style="font-size: 0.825rem;">
+                        <button class="btn btn-secondary-sand shadow-sm px-3 py-2" style="font-size: 0.825rem;">
                             <i class="fa-solid fa-calendar-check me-2"></i>Salvar no Google Calendar
                         </button>
 
@@ -257,20 +256,22 @@
     </div>
 
     <!-- Welcome Page -->
-    <div class="loading-page bg-white-black" id="welcome" style="opacity: 0;">
+    <div class="loading-page bg-white-black" id="welcome" style="opacity: 40;">
         <div class="d-flex justify-content-center align-items-center vh-100 overflow-y-auto">
             <div class="d-flex flex-column text-center">
                 <h2 class="font-esthetic mb-4" style="font-size: 2.25rem;">O Casamento de</h2>
 
-                <img src="./assets/images/placeholder.webp" data-src="./assets/images/bg.png" alt="background"
-                    class="img-center-crop rounded-circle border border-3 border-light shadow mb-4 mx-auto">
-
                 <h2 class="font-esthetic mb-4" style="font-size: 2.25rem;">Fernando &amp; Bibiana</h2>
-                <div id="guest-name" data-message="Para o Sr./Sra."></div>
+                <div id="guest-name" class="mb-4" data-message="Para o Sr./Sra."></div>
 
-                <button type="button" class="btn btn-light shadow rounded-4 mt-3 mx-auto"
-                    onclick="invitation.guest.open(this)"><i class="fa-solid fa-envelope-open fa-bounce me-2"></i>Abrir
-                    Convite</button>
+                <!-- Wax Seal acting as button -->
+                <img src="./assets/images/placeholder.webp" data-src="./assets/images/seal.png?v=3" alt="Abrir Convite"
+                    class="img-fluid cursor-pointer mx-auto wax-seal-button"
+                    style="max-width: 150px; transition: transform 0.3s; background-color: transparent;"
+                    onclick="invitation.guest.open(this)" onmouseover="this.style.transform='scale(1.1)'"
+                    onmouseout="this.style.transform='scale(1)'">
+
+                <p class="mt-3" style="font-size: 0.85rem; font-style: italic;">Abra aqui o convite</p>
             </div>
         </div>
     </div>

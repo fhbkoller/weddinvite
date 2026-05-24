@@ -1,6 +1,39 @@
 @import url("common.css");
 @import url("animation.css");
 
+/* Setup Typography and Variables */
+:root {
+  --surface: #fbf9f8;
+  --surface-dim: #dbd9d9;
+  --surface-bright: #fbf9f8;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f5f3f3;
+  --surface-container: #efeded;
+  --surface-container-high: #eae8e7;
+  --surface-container-highest: #e4e2e2;
+  --on-surface: #1b1c1c;
+  --on-surface-variant: #51443e;
+  --inverse-surface: #303030;
+  --inverse-on-surface: #f2f0f0;
+  
+  /* Brand Specific Colors */
+  --terracotta: #A8765E;
+  --sand-beige: #D9B89E;
+  --cream-canvas: #F4EDE4;
+  --soft-olive: #8B8D7A;
+  --charcoal-text: #333333;
+  
+  --bs-light-rgb: 244, 237, 228;
+  --bs-body-bg: var(--cream-canvas);
+  --bs-body-color: var(--charcoal-text);
+}
+
+body {
+  background-color: var(--cream-canvas) !important;
+  color: var(--charcoal-text) !important;
+  font-family: 'DM Sans', sans-serif !important;
+}
+
 html {
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;
@@ -12,7 +45,8 @@ html {
 }
 
 .font-esthetic {
-    font-family: 'Sacramento', cursive !important;
+    font-family: 'Libre Caslon Text', serif !important;
+    color: var(--terracotta) !important;
 }
 
 .font-arabic {
@@ -25,14 +59,42 @@ html {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
+    border: 0.5px solid rgba(217, 184, 158, 0.4); /* Sand-beige 0.5px border */
 }
 
-html[data-bs-theme="dark"] .btn-transparent {
-    background-color: rgba(var(--bs-dark-rgb), 0.5) !important;
-    backdrop-filter: blur(0.5rem);
+/* Level 1 Shadows and Radii */
+.level-1-card {
+    background-color: #ffffff;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 20px rgba(168, 118, 94, 0.04) !important;
 }
 
-html[data-bs-theme="light"] .btn-transparent {
+/* Custom Buttons */
+.btn-primary-terracotta {
+    background-color: var(--terracotta) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 4px !important;
+    font-family: 'DM Sans', sans-serif !important;
+    text-transform: uppercase;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.15em !important;
+}
+
+.btn-secondary-sand {
+    background-color: transparent !important;
+    color: var(--terracotta) !important;
+    border: 1px solid var(--sand-beige) !important;
+    border-radius: 4px !important;
+    font-family: 'DM Sans', sans-serif !important;
+    text-transform: uppercase;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.15em !important;
+}
+
+.btn-transparent {
     background-color: rgba(var(--bs-light-rgb), 0.5) !important;
     backdrop-filter: blur(0.5rem);
 }
@@ -45,30 +107,17 @@ html[data-bs-theme="light"] .btn-transparent {
     z-index: 1056;
 }
 
-html[data-bs-theme="light"] .color-theme-svg {
-    color: rgb(255, 255, 255);
-    background-color: var(--bs-light);
+.color-theme-svg {
+    color: var(--cream-canvas);
+    background-color: var(--cream-canvas);
 }
 
-html[data-bs-theme="dark"] .color-theme-svg {
-    color: rgb(0, 0, 0);
-    background-color: var(--bs-dark);
+.bg-light-dark {
+    background-color: var(--cream-canvas) !important;
 }
 
-html[data-bs-theme="light"] .bg-light-dark {
-    background-color: rgb(var(--bs-light-rgb));
-}
-
-html[data-bs-theme="dark"] .bg-light-dark {
-    background-color: rgb(var(--bs-dark-rgb));
-}
-
-html[data-bs-theme="light"] .bg-white-black {
-    background-color: rgb(var(--bs-white-rgb));
-}
-
-html[data-bs-theme="dark"] .bg-white-black {
-    background-color: rgb(var(--bs-black-rgb));
+.bg-white-black {
+    background-color: var(--cream-canvas) !important;
 }
 
 .bg-cover-home {
@@ -84,6 +133,12 @@ html[data-bs-theme="dark"] .bg-white-black {
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+/* Thin dividers */
+.sand-divider {
+    border-top: 1px solid var(--sand-beige);
+    opacity: 0.4;
 }
 
 @media screen and (max-width: 992px) {
@@ -112,4 +167,17 @@ svg {
 
 .no-gap-bottom {
     margin-bottom: -0.75rem !important;
+}
+
+/* Vertical Breathing Room */
+.section-gap {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+@media screen and (max-width: 768px) {
+    .section-gap {
+        padding-top: 64px;
+        padding-bottom: 64px;
+    }
 }
