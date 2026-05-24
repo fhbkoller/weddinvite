@@ -1,6 +1,5 @@
 import { video } from './video.js';
 import { image } from './image.js';
-import { audio } from './audio.js';
 import { progress } from './progress.js';
 import { util } from '../../common/util.js';
 import { bs } from '../../libs/bootstrap.js';
@@ -11,7 +10,6 @@ import { storage } from '../../common/storage.js';
 import { session } from '../../common/session.js';
 import { offline } from '../../common/offline.js';
 import { comment } from '../components/comment.js';
-import * as confetti from '../../libs/confetti.js';
 import { pool } from '../../connection/request.js';
 
 export const guest = (() => {
@@ -105,7 +103,7 @@ export const guest = (() => {
             return;
         }
 
-        desktopEl.dispatchEvent(new Event('undangan.slide.stop'));
+        desktopEl.dispatchEvent(new Event('invitation.slide.stop'));
 
         if (window.getComputedStyle(desktopEl).display === 'none') {
             return;
@@ -140,7 +138,7 @@ export const guest = (() => {
             return run;
         };
 
-        desktopEl.addEventListener('undangan.slide.stop', () => {
+        desktopEl.addEventListener('invitation.slide.stop', () => {
             run = false;
         });
 
@@ -169,10 +167,7 @@ export const guest = (() => {
         slide();
         theme.spyTop();
 
-        confetti.basicAnimation();
-        util.timeOut(confetti.openAnimation, 1500);
-
-        document.dispatchEvent(new Event('undangan.open'));
+        document.dispatchEvent(new Event('invitation.open'));
         util.changeOpacity(document.getElementById('welcome'), false).then((el) => el.remove());
     };
 
@@ -213,7 +208,6 @@ export const guest = (() => {
             navigator.vibrate(500);
         }
 
-        confetti.tapTapAnimation(div, 100);
         util.changeOpacity(div, false).then((e) => e.remove());
     };
 
@@ -255,10 +249,10 @@ export const guest = (() => {
         const url = new URL('https://calendar.google.com/calendar/render');
         const data = new URLSearchParams({
             action: 'TEMPLATE',
-            text: 'The Wedding of Wahyu and Riski',
-            dates: `${formatDate('2023-03-15 10:00')}/${formatDate('2023-03-15 11:00')}`,
-            details: 'Tanpa mengurangi rasa hormat, kami mengundang Anda untuk berkenan menghadiri acara pernikahan kami. Terima kasih atas perhatian dan doa restu Anda, yang menjadi kebahagiaan serta kehormatan besar bagi kami.',
-            location: 'RT 10 RW 02, Desa Pajerukan, Kec. Kalibagor, Kab. Banyumas, Jawa Tengah 53191.',
+            text: 'O Casamento de João e Maria',
+            dates: `${formatDate('2024-01-01 09:30')}/${formatDate('2024-01-01 10:30')}`,
+            details: 'Com todo respeito, convidamos você para o nosso casamento. A sua presença e bênção serão uma grande felicidade e honra para nós.',
+            location: 'Local do Casamento',
             ctz: config.get('tz'),
         });
 
@@ -279,7 +273,10 @@ export const guest = (() => {
         const load = (opt) => {
             loader(opt)
                 .then(() => progress.complete('libs'))
-                .catch(() => progress.invalid('libs'));
+                .catch((err) => {
+                    console.warn('Failed to load libraries gracefully, proceeding anyway:', err);
+                    progress.complete('libs');
+                });
         };
 
         return {
@@ -298,8 +295,9 @@ export const guest = (() => {
         normalizeArabicFont();
         buildGoogleCalendar();
 
-        if (information.has('presence')) {
-            document.getElementById('form-presence').value = information.get('presence') ? '1' : '2';
+        const formPresence = document.getElementById('form-presence');
+        if (formPresence && information.has('presence')) {
+            formPresence.value = information.get('presence') ? '1' : '2';
         }
 
         if (information.get('info')) {
@@ -327,13 +325,12 @@ export const guest = (() => {
 
         const vid = video.init();
         const img = image.init();
-        const aud = audio.init();
         const lib = loaderLibs();
         const token = document.body.getAttribute('data-key');
         const params = new URLSearchParams(window.location.search);
 
         window.addEventListener('resize', util.debounce(slide));
-        document.addEventListener('undangan.progress.done', () => booting());
+        document.addEventListener('invitation.progress.done', () => booting());
         document.addEventListener('hide.bs.modal', () => document.activeElement?.blur());
         document.getElementById('button-modal-download').addEventListener('click', (e) => {
             img.download(e.currentTarget.getAttribute('data-src'));
@@ -345,8 +342,7 @@ export const guest = (() => {
 
             vid.load();
             img.load();
-            aud.load();
-            lib.load({ confetti: document.body.getAttribute('data-confetti') === 'true' });
+            lib.load();
         }
 
         if (token && token.length > 0) {
@@ -361,7 +357,7 @@ export const guest = (() => {
             }
 
             session.guest(params.get('k') ?? token).then(({ data }) => {
-                document.dispatchEvent(new Event('undangan.session'));
+                document.dispatchEvent(new Event('invitation.session'));
                 progress.complete('config');
 
                 if (img.hasDataSrc()) {
@@ -369,8 +365,7 @@ export const guest = (() => {
                 }
 
                 vid.load();
-                aud.load();
-                lib.load({ confetti: data.is_confetti_animation });
+                lib.load();
 
                 comment.show()
                     .then(() => progress.complete('comment'))
@@ -399,7 +394,6 @@ export const guest = (() => {
             pool.init(pageLoaded, [
                 'image',
                 'video',
-                'audio',
                 'libs',
                 'gif',
             ]);

@@ -1,4 +1,4 @@
-# 💌 Template website undangan pernikahan sederhana
+# 💌 Simple Wedding Invitation Website Template
 
 ![Thumbnail](/assets/images/banner.webp)
 
@@ -8,40 +8,40 @@
 [![GitHub License](https://img.shields.io/github/license/dewanakl/undangan?color=brightgreen)](https://shields.io)
 
 ## 🚀 Demo
-Untuk kamu yang ingin melihat demo terlebih dahulu:
+For those who want to see the demo first:
 
-[https://ulems.my.id/?to=Teman teman semua](https://ulems.my.id/?to=Teman%20teman%20semua)
+[https://ulems.my.id/?to=Friends and family](https://ulems.my.id/?to=Friends%20and%20family)
 
 ## 📦 Documentation
 
-* Jalankan perintah `npm install`, lalu `npm run dev`, dan buka `http://localhost:8080`.
-* Ubah isi file `index.html` sesuai keinginanmu.
-* Jika tidak ingin menggunakan **fitur komentar**, hapus atribut `data-url` dan `data-key` di elemen `<body>` pada index.html.
-* Sesuaikan `data-url` pada `<body>` di index dan dashboard sesuai dengan URL backend (jika kamu meng-hosting sendiri).
-* Sesuaikan juga `data-key` di index dengan access key yang bisa kamu ambil dari dashboard.
-* Jika ingin menggunakan GIF, dapatkan Tenor API key di [developers.google.com/tenor](https://developers.google.com/tenor/guides/quickstart).
-* Untuk deployment, jalankan `npm run build:public`. Folder `public` adalah yang akan kamu upload.
-* Untuk backend self-hosting, lihat penjelasan di bawah, atau gunakan **trial API** secara gratis.
+* Run the command `npm install`, then `npm run dev`, and open `http://localhost:8080`.
+* Modify the content of the `index.html` file as you wish.
+* If you don't want to use the **comment feature**, remove the `data-url` and `data-key` attributes in the `<body>` element in index.html.
+* Adjust `data-url` in the `<body>` of index and dashboard according to the backend URL (if you are self-hosting).
+* Also adjust `data-key` in index with the access key you can get from the dashboard.
+* If you want to use GIFs, get a Tenor API key at [developers.google.com/tenor](https://developers.google.com/tenor/guides/quickstart).
+* For deployment, run `npm run build:public`. The `public` folder is what you will upload.
+* For self-hosting backend, see the explanation below, or use the **trial API** for free.
 
-> Undangan ini hanya menggunakan HTML, CSS, dan JavaScript biasa. NPM digunakan agar file JavaScript bisa langsung dieksekusi (bukan bertipe module lagi).
+> This invitation only uses standard HTML, CSS, and JavaScript. NPM is used so that JavaScript files can be executed directly (no longer as modules).
 
-> Jika tetap ingin tanpa NPM, ubah `src="./dist/guest.js"` menjadi `src="./js/guest.js" type="module"` pada tag `<head>` di index dan dashboard.html, dengan risiko glitch tema di awal loading.
+> If you still want to go without NPM, change `src="./dist/guest.js"` to `src="./js/guest.js" type="module"` in the `<head>` tag of index and dashboard.html, with the risk of theme glitch at initial loading.
 
-> Jika kamu punya pertanyaan, gunakan fitur `discussions` agar bisa dibaca juga oleh teman-teman lainnya.
+> If you have questions, use the `discussions` feature so other friends can read them too.
 
 > [!WARNING]  
-> Gunakan versi 3.14.0, untuk versi 4 masih tahap pengembangan dan berpotensi teredapat bug 🐛
+> Use version 3.14.0, as version 4 is still in development and potentially has bugs 🐛
 
-## 🔥 Deployment API
+## 🔥 API Deployment
 
 - Video\
-    otw
+    Coming soon
 
 - Presentation
     [https://docs.google.com/presentation](https://docs.google.com/presentation/d/1EY2YmWdZUI7ASoo0f2wvU7ec_Yt0uZanYa8YLbfNysk/edit)
 
 ## ⏰ Trial API
-Untuk kamu yang ingin mencoba secara gratis:
+For those who want to try it for free:
 
 [https://trial.ulems.my.id](https://trial.ulems.my.id)
 
@@ -59,12 +59,12 @@ All visual assets in this project are sourced from Pixabay.
 
 ## 🤝 Contributing
 
-I'm very open to those of you who want to contribute to the undangan!
+I'm very open to those of you who want to contribute to the invitation!
 
 ## 🐞 Security Vulnerabilities
 
-If you find any security vulnerabilities in this undangan, please email DKL via [dewanakretarta29@gmail.com](mailto:dewanakretarta29@gmail.com).
+If you find any security vulnerabilities in this invitation, please email DKL via [dewanakretarta29@gmail.com](mailto:dewanakretarta29@gmail.com).
 
 ## 📜 License
 
-Undangan is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Invitation is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

@@ -85,21 +85,21 @@ export const pagination = (() => {
         const btn = util.disableButton(button, util.loader.replace('ms-0 me-1', 'mx-1'), true);
 
         const process = () => {
-            comment.addEventListener('undangan.comment.done', () => btn.restore(), { once: true });
-            comment.addEventListener('undangan.comment.result', () => comment.scrollIntoView(), { once: true });
+            comment.addEventListener('invitation.comment.done', () => btn.restore(), { once: true });
+            comment.addEventListener('invitation.comment.result', () => comment.scrollIntoView(), { once: true });
 
-            comment.dispatchEvent(new Event('undangan.comment.show'));
+            comment.dispatchEvent(new Event('invitation.comment.show'));
         };
 
         const next = () => {
             pageNow += perPage;
-            button.innerHTML = 'Next' + button.innerHTML;
+            button.innerHTML = 'Próx' + button.innerHTML;
             process();
         };
 
         const prev = () => {
             pageNow -= perPage;
-            button.innerHTML = button.innerHTML + 'Prev';
+            button.innerHTML = button.innerHTML + 'Ant';
             process();
         };
 
@@ -157,24 +157,24 @@ export const pagination = (() => {
         }
     };
 
-    /**
-     * @returns {void}
-     */
     const init = () => {
         paginate = document.getElementById('pagination');
+        if (!paginate) {
+            return;
+        }
         paginate.innerHTML = `
         <ul class="pagination mb-2 shadow-sm rounded-4">
             <li class="page-item disabled" id="previous">
-                <button class="page-link rounded-start-4" onclick="undangan.comment.pagination.previous(this)" data-offline-disabled="false">
-                    <i class="fa-solid fa-circle-left me-1"></i>Prev
+                <button class="page-link rounded-start-4" onclick="invitation.comment.pagination.previous(this)" data-offline-disabled="false">
+                    <i class="fa-solid fa-circle-left me-1"></i>Ant
                 </button>
             </li>
             <li class="page-item disabled">
                 <span class="page-link text-theme-auto" id="page"></span>
             </li>
             <li class="page-item" id="next">
-                <button class="page-link rounded-end-4" onclick="undangan.comment.pagination.next(this)" data-offline-disabled="false">
-                    Next<i class="fa-solid fa-circle-right ms-1"></i>
+                <button class="page-link rounded-end-4" onclick="invitation.comment.pagination.next(this)" data-offline-disabled="false">
+                    Próx<i class="fa-solid fa-circle-right ms-1"></i>
                 </button>
             </li>
         </ul>`;
@@ -197,3 +197,4 @@ export const pagination = (() => {
         next: (btn) => buttonAction(btn).next(),
     };
 })();
+

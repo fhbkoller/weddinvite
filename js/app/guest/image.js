@@ -53,8 +53,8 @@ export const image = (() => {
             url: el.getAttribute('data-src'),
             res: (url) => appendImage(el, url),
             rej: (err) => {
-                console.error(err);
-                progress.invalid('image');
+                console.warn('Failed to fetch image:', el.getAttribute('data-src'), err);
+                progress.complete('image');
             },
         });
     };
@@ -64,7 +64,10 @@ export const image = (() => {
      * @returns {void}
      */
     const getByDefault = (el) => {
-        el.onerror = () => progress.invalid('image');
+        el.onerror = () => {
+            console.warn('Failed to load image:', el.src);
+            progress.complete('image');
+        };
         el.onload = () => {
             el.width = el.naturalWidth;
             el.height = el.naturalHeight;
@@ -74,7 +77,8 @@ export const image = (() => {
         if (el.complete && el.naturalWidth !== 0 && el.naturalHeight !== 0) {
             progress.complete('image');
         } else if (el.complete) {
-            progress.invalid('image');
+            console.warn('Image completed with error or zero dimension:', el.src);
+            progress.complete('image');
         }
     };
 

@@ -36,8 +36,9 @@ export const comment = (() => {
      */
     const onNullComment = () => {
         const desc = lang
-            .on('id', '📢 Yuk, share undangan ini biar makin rame komentarnya! 🎉')
+            .on('id', '📢 Yuk, share invitation ini biar makin rame komentarnya! 🎉')
             .on('en', '📢 Let\'s share this invitation to get more comments! 🎉')
+            .on('pt', '📢 Compartilhe este convite para ter mais comentários! 🎉')
             .get();
 
         return `<div class="text-center p-4 mx-0 mt-0 mb-3 bg-theme-auto rounded-4 shadow"><p class="fw-bold p-0 m-0" style="font-size: 0.95rem;">${desc}</p></div>`;
@@ -74,7 +75,7 @@ export const comment = (() => {
         const currentShow = showHide.get('show');
 
         button.setAttribute('data-show', isShow ? 'false' : 'true');
-        button.innerText = isShow ? `Show replies (${ids.length})` : 'Hide replies';
+        button.innerText = isShow ? `Mostrar respostas (${ids.length})` : 'Ocultar respostas';
         showHide.set('show', isShow ? currentShow.filter((i) => i !== uuid) : [...currentShow, uuid]);
 
         for (const id of ids) {
@@ -101,7 +102,7 @@ export const comment = (() => {
         const isCollapsed = anchor.getAttribute('data-show') === 'false';
 
         util.safeInnerHTML(content, util.convertMarkdownToHTML(util.escapeHtml(isCollapsed ? original : original.slice(0, card.maxCommentLength) + '...')));
-        anchor.innerText = isCollapsed ? 'Sebagian' : 'Selengkapnya';
+        anchor.innerText = isCollapsed ? 'Menos' : 'Ver mais';
         anchor.setAttribute('data-show', isCollapsed ? 'true' : 'false');
     };
 
@@ -239,14 +240,14 @@ export const comment = (() => {
                 return res;
             })
             .then(async (res) => {
-                comments.dispatchEvent(new Event('undangan.comment.result'));
+                comments.dispatchEvent(new Event('invitation.comment.result'));
 
                 if (res.data.lists && session.isAdmin()) {
                     await Promise.all(res.data.lists.map((v) => fetchTracker(v)));
                 }
 
                 pagination.setTotal(res.data.count);
-                comments.dispatchEvent(new Event('undangan.comment.done'));
+                comments.dispatchEvent(new Event('invitation.comment.done'));
                 return res;
             });
     };
@@ -256,7 +257,7 @@ export const comment = (() => {
      * @returns {Promise<void>}
      */
     const remove = async (button) => {
-        if (!util.ask('Are you sure?')) {
+        if (!util.ask('Tem certeza?')) {
             return;
         }
 
@@ -283,7 +284,7 @@ export const comment = (() => {
             return;
         }
 
-        document.querySelectorAll('a[onclick="undangan.comment.showOrHide(this)"]').forEach((n) => {
+        document.querySelectorAll('a[onclick="invitation.comment.showOrHide(this)"]').forEach((n) => {
             const oldUuids = n.getAttribute('data-uuids').split(',');
 
             if (oldUuids.includes(id)) {
@@ -333,7 +334,7 @@ export const comment = (() => {
         }
 
         if (!gifIsOpen && form.value?.trim().length === 0) {
-            util.notify('Comments cannot be empty.').warning();
+            util.notify('Comentário não pode estar vazio.').warning();
             return;
         }
 
@@ -341,7 +342,7 @@ export const comment = (() => {
             form.disabled = true;
         }
 
-        const cancel = document.querySelector(`[onclick="undangan.comment.cancel(this, '${id}')"]`);
+        const cancel = document.querySelector(`[onclick="invitation.comment.cancel(this, '${id}')"]`);
         if (cancel) {
             cancel.disabled = true;
         }
@@ -384,7 +385,7 @@ export const comment = (() => {
         removeInnerForm(id);
 
         if (!gifIsOpen) {
-            const showButton = document.querySelector(`[onclick="undangan.comment.showMore(this, '${id}')"]`);
+            const showButton = document.querySelector(`[onclick="invitation.comment.showMore(this, '${id}')"]`);
 
             const content = document.getElementById(`content-${id}`);
             content.setAttribute('data-comment', util.base64Encode(form.value));
@@ -426,7 +427,7 @@ export const comment = (() => {
         const nameValue = name.value;
 
         if (nameValue.length === 0) {
-            util.notify('Name cannot be empty.').warning();
+            util.notify('Nome não pode estar vazio.').warning();
 
             if (id) {
                 // scroll to form.
@@ -437,7 +438,7 @@ export const comment = (() => {
 
         const presence = document.getElementById('form-presence');
         if (!id && presence && presence.value === '0') {
-            util.notify('Please select your attendance status.').warning();
+            util.notify('Por favor, selecione sua confirmação de presença.').warning();
             return;
         }
 
@@ -446,7 +447,7 @@ export const comment = (() => {
         const gifCancel = gif.buttonCancel(id);
 
         if (gifIsOpen && !gifId) {
-            util.notify('Gif cannot be empty.').warning();
+            util.notify('GIF não pode estar vazio.').warning();
             return;
         }
 
@@ -456,7 +457,7 @@ export const comment = (() => {
 
         const form = document.getElementById(`form-${id ? `inner-${id}` : 'comment'}`);
         if (!gifIsOpen && form.value?.trim().length === 0) {
-            util.notify('Comments cannot be empty.').warning();
+            util.notify('Comentário não pode estar vazio.').warning();
             return;
         }
 
@@ -472,7 +473,7 @@ export const comment = (() => {
             form.disabled = true;
         }
 
-        const cancel = document.querySelector(`[onclick="undangan.comment.cancel(this, '${id}')"]`);
+        const cancel = document.querySelector(`[onclick="invitation.comment.cancel(this, '${id}')"]`);
         if (cancel) {
             cancel.disabled = true;
         }
@@ -592,14 +593,14 @@ export const comment = (() => {
 
         const btn = util.disableButton(button);
 
-        if (gif.isOpen(id) && ((!gif.getResultId(id) && isChecklist === isPresent) || util.ask('Are you sure?'))) {
+        if (gif.isOpen(id) && ((!gif.getResultId(id) && isChecklist === isPresent) || util.ask('Tem certeza?'))) {
             await gif.remove(id);
             removeInnerForm(id);
             return;
         }
 
         const form = document.getElementById(`form-inner-${id}`);
-        if (form.value.length === 0 || (util.base64Encode(form.value) === form.getAttribute('data-original') && isChecklist === isPresent) || util.ask('Are you sure?')) {
+        if (form.value.length === 0 || (util.base64Encode(form.value) === form.getAttribute('data-original') && isChecklist === isPresent) || util.ask('Tem certeza?')) {
             removeInnerForm(id);
             return;
         }
@@ -662,17 +663,18 @@ export const comment = (() => {
         formInner.setAttribute('data-original', util.base64Encode(original));
     };
 
-    /**
-     * @returns {void}
-     */
     const init = () => {
+        comments = document.getElementById('comments');
+        if (!comments) {
+            return;
+        }
+
         gif.init();
         like.init();
         card.init();
         pagination.init();
 
-        comments = document.getElementById('comments');
-        comments.addEventListener('undangan.comment.show', show);
+        comments.addEventListener('invitation.comment.show', show);
 
         owns = storage('owns');
         showHide = storage('comment');

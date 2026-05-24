@@ -32,7 +32,7 @@ export const admin = (() => {
         document.getElementById('dashboard-tenorkey').value = res.data.tenor_key;
 
         storage('config').set('tenor_key', res.data.tenor_key);
-        document.dispatchEvent(new Event('undangan.session'));
+        document.dispatchEvent(new Event('invitation.session'));
 
         request(HTTP_GET, '/api/stats').token(session.getToken()).withCache(1000 * 30).withForceCache().send().then((resp) => {
             document.getElementById('count-comment').textContent = String(resp.data.comments).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -73,7 +73,7 @@ export const admin = (() => {
             .token(session.getToken())
             .body({ tenor_key: form.value.length ? form.value : null })
             .send()
-            .then(() => util.notify(`success ${form.value.length ? 'add' : 'remove'} tenor key`).success())
+            .then(() => util.notify(`Chave do Tenor ${form.value.length ? 'adicionada' : 'removida'} com sucesso`).success())
             .finally(() => {
                 form.disabled = false;
                 btn.restore();
@@ -85,7 +85,7 @@ export const admin = (() => {
      * @returns {void}
      */
     const regenerate = (button) => {
-        if (!util.ask('Are you sure?')) {
+        if (!util.ask('Tem certeza?')) {
             return;
         }
 
@@ -113,7 +113,7 @@ export const admin = (() => {
         const newest = document.getElementById('new_password');
 
         if (old.value.length === 0 || newest.value.length === 0) {
-            util.notify('Password cannot be empty').warning();
+            util.notify('Senha não pode estar vazia').warning();
             return;
         }
 
@@ -136,7 +136,7 @@ export const admin = (() => {
 
                 old.value = null;
                 newest.value = null;
-                util.notify('Success change password').success();
+                util.notify('Senha alterada com sucesso').success();
             })
             .finally(() => {
                 btn.restore(true);
@@ -154,7 +154,7 @@ export const admin = (() => {
         const name = document.getElementById('form-name');
 
         if (name.value.length === 0) {
-            util.notify('Name cannot be empty').warning();
+            util.notify('Nome não pode estar vazio').warning();
             return;
         }
 
@@ -171,7 +171,7 @@ export const admin = (() => {
                 }
 
                 util.safeInnerHTML(document.getElementById('dashboard-name'), `${util.escapeHtml(name.value)}<i class="fa-solid fa-hands text-warning ms-2"></i>`);
-                util.notify('Success change name').success();
+                util.notify('Nome alterado com sucesso').success();
             })
             .finally(() => {
                 name.disabled = false;
@@ -231,7 +231,7 @@ export const admin = (() => {
             document.addEventListener('click', (e) => {
                 if (!form.contains(e.currentTarget) && !dropdown.contains(e.currentTarget)) {
                     if (form.value.trim().length <= 0) {
-                        form.setCustomValidity('Timezone cannot be empty.');
+                        form.setCustomValidity('Fuso horário não pode estar vazio.');
                         form.reportValidity();
                         return;
                     }
@@ -267,12 +267,12 @@ export const admin = (() => {
         const tz = document.getElementById('form-timezone');
 
         if (tz.value.length === 0) {
-            util.notify('Time zone cannot be empty').warning();
+            util.notify('Fuso horário não pode estar vazio').warning();
             return;
         }
 
         if (!Intl.supportedValuesOf('timeZone').includes(tz.value)) {
-            util.notify('Timezone not supported').warning();
+            util.notify('Fuso horário não suportado').warning();
             return;
         }
 
@@ -288,7 +288,7 @@ export const admin = (() => {
                     return;
                 }
 
-                util.notify('Success change tz').success();
+                util.notify('Fuso horário alterado com sucesso').success();
             })
             .finally(() => {
                 tz.disabled = false;
@@ -300,7 +300,7 @@ export const admin = (() => {
      * @returns {void}
      */
     const logout = () => {
-        if (!util.ask('Are you sure?')) {
+        if (!util.ask('Tem certeza?')) {
             return;
         }
 
@@ -312,7 +312,7 @@ export const admin = (() => {
      */
     const pageLoaded = () => {
         lang.init();
-        lang.setDefault('en');
+        lang.setDefault('pt');
 
         comment.init();
         offline.init();

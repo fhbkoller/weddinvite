@@ -44,6 +44,16 @@ export const pool = (() => {
         restart: async (name) => {
             cachePool.set(name, null);
             cachePool.delete(name);
+            if (!window.isSecureContext || !window.caches) {
+                const dummyCache = {
+                    match: () => Promise.resolve(null),
+                    put: () => Promise.resolve(),
+                    delete: () => Promise.resolve(true),
+                    keys: () => Promise.resolve([]),
+                };
+                cachePool.set(name, dummyCache);
+                return;
+            }
             await window.caches.delete(name);
             await window.caches.open(name).then((c) => cachePool.set(name, c));
         },
@@ -53,8 +63,20 @@ export const pool = (() => {
          * @returns {void}
          */
         init: (callback, lists = []) => {
-            if (!window.isSecureContext) {
-                throw new Error('this application required secure context');
+            if (!window.isSecureContext || !window.caches) {
+                console.warn('caching is disabled because the application is not running in a secure context.');
+                cachePool = new Map();
+                const dummyCache = {
+                    match: () => Promise.resolve(null),
+                    put: () => Promise.resolve(),
+                    delete: () => Promise.resolve(true),
+                    keys: () => Promise.resolve([]),
+                };
+                lists.concat([cacheRequest]).forEach((v) => {
+                    cachePool.set(v, dummyCache);
+                });
+                callback();
+                return;
             }
 
             cachePool = new Map();

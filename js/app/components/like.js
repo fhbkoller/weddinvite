@@ -1,7 +1,6 @@
 import { dto } from '../../connection/dto.js';
 import { storage } from '../../common/storage.js';
 import { session } from '../../common/session.js';
-import { tapTapAnimation } from '../../libs/confetti.js';
 import { request, HTTP_PATCH, HTTP_POST, HTTP_STATUS_CREATED } from '../../connection/request.js';
 
 export const like = (() => {
@@ -78,7 +77,7 @@ export const like = (() => {
      * @returns {HTMLElement|null}
      */
     const getButtonLike = (uuid) => {
-        return document.querySelector(`button[onclick="undangan.comment.like.love(this)"][data-uuid="${uuid}"]`);
+        return document.querySelector(`button[onclick="invitation.comment.like.love(this)"][data-uuid="${uuid}"]`);
     };
 
     /**
@@ -98,8 +97,6 @@ export const like = (() => {
         const notLiked = !likes.has(uuid) && div.getAttribute('data-liked') !== 'true';
 
         if (isTapTap && notLiked) {
-            tapTapAnimation(div);
-
             div.setAttribute('data-liked', 'true');
             await love(getButtonLike(uuid));
             div.setAttribute('data-liked', 'false');

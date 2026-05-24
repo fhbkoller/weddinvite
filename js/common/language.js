@@ -13,7 +13,7 @@ export const lang = (() => {
         'ru': 'RU',
         'it': 'IT',
         'nl': 'NL',
-        'pt': 'PT',
+        'pt': 'BR',
         'tr': 'TR',
         'th': 'TH',
         'vi': 'VN',
@@ -97,7 +97,7 @@ export const lang = (() => {
          */
         init() {
             mapping = new Map();
-            this.setDefault(navigator.language.split('-').shift());
+            this.setDefault('pt');
         },
     };
 })();

@@ -47,25 +47,6 @@ const loadAOS = (c) => {
  * @param {ReturnType<typeof cache>} c
  * @returns {Promise<void>}
  */
-const loadConfetti = (c) => {
-    const url = 'https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.js';
-
-    return c.get(url).then((uri) => new Promise((res, rej) => {
-        const sc = document.createElement('script');
-        sc.onerror = rej;
-        sc.onload = () => {
-            typeof window.confetti === 'undefined' ? rej(new Error('Confetti library failed to load')) : res();
-        };
-
-        sc.src = uri;
-        document.head.appendChild(sc);
-    }));
-};
-
-/**
- * @param {ReturnType<typeof cache>} c
- * @returns {Promise<void>}
- */
 const loadAdditionalFont = (c) => {
 
     const fonts = [
@@ -93,7 +74,6 @@ const loadAdditionalFont = (c) => {
 /**
  * @param {Object} [opt]
  * @param {boolean} [opt.aos=true] - Load AOS library
- * @param {boolean} [opt.confetti=true] - Load Confetti library
  * @param {boolean} [opt.additionalFont=true] - Load Additional Font
  * @returns {Promise<void>}
  */
@@ -103,10 +83,6 @@ export const loader = (opt = {}) => {
 
     if (opt?.aos ?? true) {
         promises.push(loadAOS(c));
-    }
-
-    if (opt?.confetti ?? true) {
-        promises.push(loadConfetti(c));
     }
 
     if (opt?.additionalFont ?? true) {
