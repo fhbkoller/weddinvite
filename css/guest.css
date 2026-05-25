@@ -1,5 +1,4 @@
-@import url("common.css");
-@import url("animation.css");
+
 
 /* Setup Typography and Variables */
 :root {
@@ -421,6 +420,7 @@ svg {
 
 .viagem-timeline {
     padding: 0 10px;
+    container-type: inline-size;
 }
 
 .viagem-img {
@@ -436,9 +436,8 @@ svg {
 
 @keyframes flyPlane {
     0% {
-        left: 0%;
         opacity: 0;
-        transform: translateY(-50%) rotate(0deg);
+        transform: translate(0, -50%) rotate(0deg);
     }
 
     5% {
@@ -450,9 +449,8 @@ svg {
     }
 
     100% {
-        left: 95%;
         opacity: 0;
-        transform: translateY(-50%) rotate(0deg);
+        transform: translate(95cqi, -50%) rotate(0deg);
     }
 }
 
@@ -460,6 +458,7 @@ svg {
     animation: flyPlane 6s infinite linear;
     color: #a8765e;
     font-size: 1.5rem;
+    left: 0;
 }
 
 .border-dashed {

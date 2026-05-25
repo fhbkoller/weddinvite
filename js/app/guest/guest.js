@@ -6,9 +6,7 @@ import { loader } from '../../libs/loader.js';
 import { theme } from '../../common/theme.js';
 import { lang } from '../../common/language.js';
 import { storage } from '../../common/storage.js';
-import { session } from '../../common/session.js';
 import { offline } from '../../common/offline.js';
-import { comment } from '../components/comment.js';
 import { pool } from '../../connection/request.js';
 
 export const guest = (() => {
@@ -28,11 +26,6 @@ export const guest = (() => {
      */
     const countDownDate = () => {
         const count = (new Date(document.body.getAttribute('data-time').replace(' ', 'T'))).getTime();
-
-        /**
-         * @param {number} num 
-         * @returns {string}
-         */
         const pad = (num) => num < 10 ? `0${num}` : `${num}`;
 
         const day = document.getElementById('day');
@@ -40,18 +33,24 @@ export const guest = (() => {
         const minute = document.getElementById('minute');
         const second = document.getElementById('second');
 
+        let lastSecond = -1;
+
         const updateCountdown = () => {
             const distance = Math.abs(count - Date.now());
+            const currentSecond = Math.floor(distance / 1000);
 
-            day.textContent = pad(Math.floor(distance / (1000 * 60 * 60 * 24)));
-            hour.textContent = pad(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-            minute.textContent = pad(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
-            second.textContent = pad(Math.floor((distance % (1000 * 60)) / 1000));
+            if (currentSecond !== lastSecond) {
+                lastSecond = currentSecond;
+                day.textContent = pad(Math.floor(distance / (1000 * 60 * 60 * 24)));
+                hour.textContent = pad(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+                minute.textContent = pad(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+                second.textContent = pad(currentSecond % 60);
+            }
 
-            util.timeOut(updateCountdown, 1000 - (Date.now() % 1000));
+            requestAnimationFrame(updateCountdown);
         };
 
-        util.timeOut(updateCountdown);
+        requestAnimationFrame(updateCountdown);
     };
 
     /**
@@ -246,20 +245,20 @@ export const guest = (() => {
      * @returns {void}
      */
     const buildGoogleCalendar = () => {
-        /**
-         * @param {string} d 
-         * @returns {string}
-         */
-        const formatDate = (d) => (new Date(d.replace(' ', 'T') + ':00Z')).toISOString().replace(/[-:]/g, '').split('.').shift();
+        const dateStr = document.body.getAttribute('data-time');
+        // Parse date explicitly as BRT (UTC-03:00) so it's globally correct
+        const startDate = new Date(dateStr.replace(' ', 'T') + '-03:00');
+        const endDate = new Date(startDate.getTime() + (4 * 60 * 60 * 1000)); // 4 hours later
+
+        const formatGCalDate = (d) => d.toISOString().replace(/[-:]/g, '').split('.').shift() + 'Z';
 
         const url = new URL('https://calendar.google.com/calendar/render');
         const data = new URLSearchParams({
             action: 'TEMPLATE',
-            text: 'O Casamento de João e Maria',
-            dates: `${formatDate('2024-01-01 09:30')}/${formatDate('2024-01-01 10:30')}`,
-            details: 'Com todo respeito, convidamos você para o nosso casamento. A sua presença e bênção serão uma grande felicidade e honra para nós.',
-            location: 'Local do Casamento',
-            ctz: config.get('tz'),
+            text: 'Casamento de Fer e Bibi',
+            dates: `${formatGCalDate(startDate)}/${formatGCalDate(endDate)}`,
+            location: 'Gruta do Poço Certo, Lomba Alta, s/n - Zona Rural, Alfredo Wagner - SC, 88450-000, Brasil',
+            ctz: 'America/Sao_Paulo',
         });
 
         url.search = data.toString();
@@ -323,7 +322,6 @@ export const guest = (() => {
     const pageLoaded = () => {
         lang.init();
         offline.init();
-        comment.init();
         progress.init();
 
         config = storage('config');
@@ -331,8 +329,6 @@ export const guest = (() => {
 
         const img = image.init();
         const lib = loaderLibs();
-        const token = document.body.getAttribute('data-key');
-        const params = new URLSearchParams(window.location.search);
 
         window.addEventListener('resize', util.debounce(slide));
         document.addEventListener('invitation.progress.done', () => booting());
@@ -341,41 +337,8 @@ export const guest = (() => {
             img.download(e.currentTarget.getAttribute('data-src'));
         });
 
-        if (!token || token.length <= 0) {
-            document.getElementById('comment')?.remove();
-            document.querySelector('a.nav-link[href="#comment"]')?.closest('li.nav-item')?.remove();
-
-            img.load();
-            lib.load();
-        }
-
-        if (token && token.length > 0) {
-            // add 2 progress for config and comment.
-            // before img.load();
-            progress.add();
-            progress.add();
-
-            // if don't have data-src.
-            if (!img.hasDataSrc()) {
-                img.load();
-            }
-
-            session.guest(params.get('k') ?? token).then(({ data }) => {
-                document.dispatchEvent(new Event('invitation.session'));
-                progress.complete('config');
-
-                if (img.hasDataSrc()) {
-                    img.load();
-                }
-
-                lib.load();
-
-                comment.show()
-                    .then(() => progress.complete('comment'))
-                    .catch(() => progress.invalid('comment'));
-
-            }).catch(() => progress.invalid('config'));
-        }
+        img.load();
+        lib.load();
     };
 
     /**
@@ -383,28 +346,17 @@ export const guest = (() => {
      */
     const init = () => {
         theme.init();
-        session.init();
-
-        if (session.isAdmin()) {
-            storage('user').clear();
-            storage('owns').clear();
-            storage('likes').clear();
-            storage('session').clear();
-            storage('comment').clear();
-        }
 
         window.addEventListener('load', () => {
             pool.init(pageLoaded, [
                 'image',
                 'libs',
-                'gif',
             ]);
         });
 
         return {
             util,
             theme,
-            comment,
             guest: {
                 open,
                 modal,
