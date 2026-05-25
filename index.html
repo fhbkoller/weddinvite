@@ -268,10 +268,23 @@
         }
 
         @keyframes swipeAnimation {
-            0% { transform: translateY(15px); opacity: 0; }
-            30% { opacity: 1; }
-            70% { opacity: 1; }
-            100% { transform: translateY(-15px); opacity: 0; }
+            0% {
+                transform: translateY(15px);
+                opacity: 0;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            70% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-15px);
+                opacity: 0;
+            }
         }
 
         .swipe-animation {
@@ -296,8 +309,7 @@
     <div class="row m-0 p-0 opacity-0" id="root">
 
         <!-- Desktop mode -->
-        <div
-            class="sticky-top vh-100 d-none d-sm-block col-sm-6 overflow-y-hidden m-0 p-0">
+        <div class="sticky-top vh-100 d-none d-sm-block col-sm-6 overflow-y-hidden m-0 p-0">
             <div class="position-relative bg-white-black d-flex justify-content-center align-items-center vh-100">
                 <div class="d-flex position-absolute w-100 h-100">
                     <div class="position-relative overflow-hidden vw-100">
@@ -345,14 +357,21 @@
                         <h2 class="font-esthetic my-4" style="font-size: 2.25rem;">Fernando &amp; Bibiana</h2>
                         <p class="my-2" style="font-size: 1.25rem;">Sábado, 31 de Dezembro de 2099</p>
 
-                        <button class="btn btn-secondary-sand shadow-sm px-3 py-2" style="font-size: 0.825rem;">
-                            <i class="fa-solid fa-calendar-check me-2"></i>Salvar no Google Calendar
-                        </button>
+                        <div class="d-flex flex-column align-items-center gap-2 justify-content-center my-3">
+                            <button class="btn btn-secondary-sand shadow-sm px-3 py-2" style="font-size: 0.825rem;">
+                                <i class="fa-solid fa-calendar-check me-2"></i>Salvar no Google Calendar
+                            </button>
+                            <a href="https://example.com/wedding#/rsvp" target="_blank"
+                                class="btn btn-primary-terracotta shadow-sm px-3 py-2" style="font-size: 0.825rem;">
+                                <i class="fa-solid fa-envelope me-2"></i>Confirme sua presença
+                            </a>
+                        </div>
 
                         <!-- PC View (Mouse) -->
                         <div class="d-none d-sm-block">
                             <div class="d-flex justify-content-center align-items-center mt-4 mb-2">
-                                <div class="mouse-animation border border-secondary border-2 rounded-5 px-2 py-1 opacity-50">
+                                <div
+                                    class="mouse-animation border border-secondary border-2 rounded-5 px-2 py-1 opacity-50">
                                     <div class="scroll-animation rounded-4 bg-secondary"></div>
                                 </div>
                             </div>
@@ -361,7 +380,8 @@
 
                         <!-- Smartphone View (Hand) -->
                         <div class="d-block d-sm-none">
-                            <div class="d-flex justify-content-center align-items-center mt-4 mb-2" style="height: 38px;">
+                            <div class="d-flex justify-content-center align-items-center mt-4 mb-2"
+                                style="height: 38px;">
                                 <i class="fa-solid fa-hand-pointer text-secondary fs-3 swipe-animation opacity-50"></i>
                             </div>
                             <p class="pb-4 m-0 text-secondary" style="font-size: 0.825rem;">Deslize para Baixo</p>
@@ -382,7 +402,7 @@
                 <!-- Wedding Date -->
                 <section class="bg-white-black pb-2" id="wedding-date">
                     <div class="container text-center">
-                        <h2 class="font-esthetic py-4 m-0" style="font-size: 2.25rem;">Momento Feliz</h2>
+                        <h2 class="font-esthetic py-4 m-0" style="font-size: 2.25rem;">Nossa União</h2>
 
                         <div class="border rounded-pill shadow py-2 px-4 mt-2 mb-4">
                             <div class="row justify-content-center">
@@ -411,12 +431,29 @@
                         <div class="overflow-x-hidden">
                             <div class="py-2" data-aos="fade-right" data-aos-duration="1500">
                                 <h2 class="font-esthetic m-0 py-2" style="font-size: 2rem;">Cerimônia</h2>
-                                <p style="font-size: 0.95rem;">Às 10h00</p>
+                                <p style="font-size: 0.95rem;">Às 15h30</p>
+                                <p style="font-size: 0.90rem;">Local da Cerimônia Fictícia</p>
+                                <p style="font-size: 0.80rem;">Mais detalhes sobre a cerimônia e mapa do local estão <a
+                                        href="https://example.com/wedding#cerimonia"
+                                        target="_blank">disponíveis em
+                                        nosso site</a></p>
                             </div>
 
                             <div class="py-2" data-aos="fade-left" data-aos-duration="1500">
                                 <h2 class="font-esthetic m-0 py-2" style="font-size: 2rem;">Recepção</h2>
-                                <p style="font-size: 0.95rem;">Às 13h00</p>
+                                <p style="font-size: 0.85rem;font-style: italic;">Não faremos festa, mas convidamos quem
+                                    quiser celebrar
+                                    conosco a se juntar a nós em um jantar</p>
+                                <p style="font-size: 0.75rem;font-style: italic;">O jantar deve custar em torno de
+                                    100-150 R$ por pessoa e vocês podem consultar o cardápio <a
+                                        href="https://www.canva.com/design/DAGnkV8xB9M/CqF0y5rKC5JRV7zTgIF7mQ/view?utm_content=DAGnkV8xB9M&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hfb01622dfb"
+                                        target="_blank">aqui</a></p>
+                                <p style="font-size: 0.70rem;font-style: italic;">PS: agradem o noivo que ele patrocina
+                                    algumas bebidas haha ;)</p>
+                                <p style="font-size: 0.95rem;">Às 19h00</p>
+                                <p style="font-size: 1rem;">Recepção Fictícia</p>
+                                <p style="font-size: 0.90rem;">Avenida Osvaldo Rodrigues Cabral, 1251 - Centro,
+                                    Florianópolis</p>
                             </div>
                         </div>
                     </div>
@@ -478,7 +515,7 @@
         <div class="flap-right">
             <div class="texture-overlay-layer texture-overlay"></div>
             <div class="guest-name-container">
-                <div id="guest-name" data-message="Para o Sr./Sra."></div>
+                <div id="guest-name" data-message="É com muito amor e carinho que convidamos"></div>
             </div>
         </div>
         <!-- Wax Seal (Centered) -->
