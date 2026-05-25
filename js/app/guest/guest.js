@@ -1,4 +1,3 @@
-import { video } from './video.js';
 import { image } from './image.js';
 import { progress } from './progress.js';
 import { util } from '../../common/util.js';
@@ -58,16 +57,23 @@ export const guest = (() => {
     /**
      * @returns {void}
      */
-    const showGuestName = () => {
-        /**
-         * Make sure "to=" is the last query string.
-         * Ex. ulems.my.id/?id=some-uuid-here&to=name
-         */
-        const raw = window.location.search.split('to=');
+    const showGuestName = async () => {
+        const params = new URLSearchParams(window.location.search);
+        const guestId = params.get('id');
         let name = null;
 
-        if (raw.length > 1 && raw[1].length >= 1) {
-            name = window.decodeURIComponent(raw[1]);
+        if (guestId) {
+            try {
+                const response = await fetch('./guests.json');
+                if (response.ok) {
+                    const guestsMap = await response.json();
+                    if (guestsMap[guestId]) {
+                        name = guestsMap[guestId];
+                    }
+                }
+            } catch (error) {
+                console.error("Failed to load guests list", error);
+            }
         }
 
         if (name) {
@@ -290,7 +296,7 @@ export const guest = (() => {
     const booting = async () => {
         animateSvg();
         countDownDate();
-        showGuestName();
+        await showGuestName();
         modalImageClick();
         normalizeArabicFont();
         buildGoogleCalendar();
@@ -323,7 +329,6 @@ export const guest = (() => {
         config = storage('config');
         information = storage('information');
 
-        const vid = video.init();
         const img = image.init();
         const lib = loaderLibs();
         const token = document.body.getAttribute('data-key');
@@ -340,7 +345,6 @@ export const guest = (() => {
             document.getElementById('comment')?.remove();
             document.querySelector('a.nav-link[href="#comment"]')?.closest('li.nav-item')?.remove();
 
-            vid.load();
             img.load();
             lib.load();
         }
@@ -364,7 +368,6 @@ export const guest = (() => {
                     img.load();
                 }
 
-                vid.load();
                 lib.load();
 
                 comment.show()
@@ -393,7 +396,6 @@ export const guest = (() => {
         window.addEventListener('load', () => {
             pool.init(pageLoaded, [
                 'image',
-                'video',
                 'libs',
                 'gif',
             ]);
