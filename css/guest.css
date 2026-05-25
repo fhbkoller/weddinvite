@@ -3,35 +3,35 @@
 
 /* Setup Typography and Variables */
 :root {
-  --surface: #fbf9f8;
-  --surface-dim: #dbd9d9;
-  --surface-bright: #fbf9f8;
-  --surface-container-lowest: #ffffff;
-  --surface-container-low: #f5f3f3;
-  --surface-container: #efeded;
-  --surface-container-high: #eae8e7;
-  --surface-container-highest: #e4e2e2;
-  --on-surface: #1b1c1c;
-  --on-surface-variant: #51443e;
-  --inverse-surface: #303030;
-  --inverse-on-surface: #f2f0f0;
-  
-  /* Brand Specific Colors */
-  --terracotta: #A8765E;
-  --sand-beige: #D9B89E;
-  --cream-canvas: #F4EDE4;
-  --soft-olive: #8B8D7A;
-  --charcoal-text: #333333;
-  
-  --bs-light-rgb: 244, 237, 228;
-  --bs-body-bg: var(--cream-canvas);
-  --bs-body-color: var(--charcoal-text);
+    --surface: #fbf9f8;
+    --surface-dim: #dbd9d9;
+    --surface-bright: #fbf9f8;
+    --surface-container-lowest: #ffffff;
+    --surface-container-low: #f5f3f3;
+    --surface-container: #efeded;
+    --surface-container-high: #eae8e7;
+    --surface-container-highest: #e4e2e2;
+    --on-surface: #1b1c1c;
+    --on-surface-variant: #51443e;
+    --inverse-surface: #303030;
+    --inverse-on-surface: #f2f0f0;
+
+    /* Brand Specific Colors */
+    --terracotta: #A8765E;
+    --sand-beige: #D9B89E;
+    --cream-canvas: #F4EDE4;
+    --soft-olive: #8B8D7A;
+    --charcoal-text: #333333;
+
+    --bs-light-rgb: 244, 237, 228;
+    --bs-body-bg: var(--cream-canvas);
+    --bs-body-color: var(--charcoal-text);
 }
 
 body {
-  background-color: var(--cream-canvas) !important;
-  color: var(--charcoal-text) !important;
-  font-family: 'DM Sans', sans-serif !important;
+    background-color: var(--cream-canvas) !important;
+    color: var(--charcoal-text) !important;
+    font-family: 'DM Sans', sans-serif !important;
 }
 
 html {
@@ -42,6 +42,23 @@ html {
 .with-scrollbar {
     scrollbar-width: auto !important;
     -ms-overflow-style: auto !important;
+}
+
+@font-face {
+    font-family: 'Joliet';
+    src: url('../assets/fonts/Joliet-Regular.woff2') format('woff2'),
+        url('../assets/fonts/Joliet-Regular.woff') format('woff'),
+        url('../assets/fonts/Joliet-Regular.otf') format('opentype'),
+        url('../assets/fonts/Joliet-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.font-names {
+    font-family: 'Joliet', 'Libre Caslon Text', serif !important;
+    color: var(--terracotta) !important;
+    font-weight: bold !important;
 }
 
 .font-esthetic {
@@ -59,7 +76,8 @@ html {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
-    border: 0.5px solid rgba(217, 184, 158, 0.4); /* Sand-beige 0.5px border */
+    border: 0.5px solid rgba(217, 184, 158, 0.4);
+    /* Sand-beige 0.5px border */
 }
 
 /* Level 1 Shadows and Radii */

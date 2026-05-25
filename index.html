@@ -5,35 +5,35 @@
     <!-- Common Tag -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Site de Convite de Casamento de João e Maria Online</title>
+    <title>Convite de Casamento de João e Maria</title>
 
     <!-- SEO Tag -->
     <meta name="author" content="dewanakl">
     <meta name="language" content="pt-BR">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="googlebot" content="index, follow, max-image-preview:large">
-    <meta name="title" content="Site de Convite de Casamento de João e Maria Online">
-    <meta name="description" content="Site de Convite de Casamento de João e Maria Online">
+    <meta name="title" content="Convite de Casamento de João e Maria">
+    <meta name="description" content="Convite de Casamento de João e Maria">
     <meta name="keywords"
         content="convite, casamento, convite digital, convite online, wedding invitation, template convite, template convite casamento, convite casamento, template convite online, wedding invitation github, template website, template website convite casamento">
-    <meta property="og:title" content="Site de Convite de Casamento de João e Maria Online">
-    <meta property="og:description" content="Site de Convite de Casamento de João e Maria Online">
+    <meta property="og:title" content="Convite de Casamento de João e Maria">
+    <meta property="og:description" content="Convite de Casamento de João e Maria">
     <meta property="og:keywords"
         content="convite, casamento, convite digital, convite online, wedding invitation, template convite, template convite casamento, convite casamento, template convite online, wedding invitation github, template website, template website convite casamento">
     <meta property="og:image" content="https://ulems.my.id/assets/images/bg.webp">
     <meta property="og:image:secure_url" content="https://ulems.my.id/assets/images/bg.webp">
     <meta property="og:image:type" content="image/webp">
-    <meta property="og:image:alt" content="Site de Convite de Casamento de João e Maria Online">
+    <meta property="og:image:alt" content="Convite de Casamento de João e Maria">
     <meta property="og:image:width" content="980">
     <meta property="og:image:height" content="980">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:url" content="https://ulems.my.id">
-    <meta property="og:site_name" content="Site de Convite de Casamento de João e Maria Online">
+    <meta property="og:site_name" content="Convite de Casamento de João e Maria">
 
     <!-- Appearance -->
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Site de Convite de Casamento de João e Maria Online">
+    <meta name="apple-mobile-web-app-title" content="Convite de Casamento de João e Maria">
     <meta name="theme-color" content="#000000">
     <meta name="color-scheme" content="dark light">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -182,11 +182,16 @@
         }
 
         #guest-name {
-            font-family: 'DM Sans', sans-serif;
             color: #7e513b;
             text-align: right;
-            font-size: clamp(1.25rem, 5vw, 2.5rem);
-            font-weight: 500;
+            font-size: clamp(1rem, 5vw, 1rem);
+        }
+
+        #guest-name p {
+            font-family: 'Joliet', 'Libre Caslon Text', serif !important;
+            font-weight: bold !important;
+            font-size: clamp(1.75rem, 6.5vw, 5.25rem) !important;
+            margin-top: 0.25rem !important;
         }
 
         .guest-name-container {
@@ -290,6 +295,54 @@
         .swipe-animation {
             animation: swipeAnimation 1.5s infinite ease-in-out;
         }
+
+        .viagem-timeline {
+            padding: 0 10px;
+        }
+
+        .viagem-img {
+            width: clamp(70px, 20vw, 100px);
+            height: clamp(70px, 20vw, 100px);
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .viagem-img:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes flyPlane {
+            0% {
+                left: 0%;
+                opacity: 0;
+                transform: translateY(-50%) rotate(0deg);
+            }
+
+            5% {
+                opacity: 1;
+            }
+
+            95% {
+                opacity: 1;
+            }
+
+            100% {
+                left: 95%;
+                opacity: 0;
+                transform: translateY(-50%) rotate(0deg);
+            }
+        }
+
+        .plane-animation {
+            animation: flyPlane 6s infinite linear;
+            color: #a8765e;
+            font-size: 1.5rem;
+        }
+
+        .border-dashed {
+            border-style: dashed !important;
+            border-color: #d9b89e !important;
+        }
     </style>
 </head>
 
@@ -329,7 +382,7 @@
                 </div>
 
                 <div class="text-center p-4 bg-overlay-auto rounded-5">
-                    <h2 class="font-esthetic mb-4" style="font-size: 2rem;">Fernando &amp; Bibiana</h2>
+                    <h2 class="font-names mb-4" style="font-size: 3rem;">Fernando &amp; Bibiana</h2>
                     <p class="m-0" style="font-size: 1rem;">Sábado, 31 de Dezembro de 2099</p>
                 </div>
             </div>
@@ -343,18 +396,17 @@
 
                 <!-- Home -->
                 <section id="home" class="bg-light-dark position-relative overflow-hidden p-0 m-0">
-                    <img src="./assets/images/placeholder.webp" data-src="./assets/images/bg.webp" alt="bg"
+                    <img src="./assets/images/placeholder.webp" data-src="./assets/images/casar_photo_9.jpg" alt="bg"
                         class="position-absolute opacity-25 top-50 start-50 translate-middle bg-cover-home">
 
                     <div class="position-relative text-center bg-overlay-auto" style="background-color: unset;">
-                        <h1 class="font-esthetic pt-5 pb-4 fw-medium" style="font-size: 2.25rem;">Convite de Casamento
-                        </h1>
+                        <h1 class="font-names pt-5 pb-4 fw-medium" style="font-size: 3.25rem;">Nosso Casamento</h1>
 
-                        <img src="./assets/images/placeholder.webp" data-src="./assets/images/casar_photo_1.jpg"
+                        <img src="./assets/images/placeholder.webp" data-src="./assets/images/casar_photo_1.jpg?v=1"
                             alt="bg" onclick="invitation.guest.modal(this)"
                             class="img-center-crop rounded-circle shadow my-4 mx-auto cursor-pointer">
 
-                        <h2 class="font-esthetic my-4" style="font-size: 2.25rem;">Fernando &amp; Bibiana</h2>
+                        <h2 class="font-names my-4" style="font-size: 3.25rem;">Fer &amp; Bibi</h2>
                         <p class="my-2" style="font-size: 1.25rem;">Sábado, 31 de Dezembro de 2099</p>
 
                         <div class="d-flex flex-column align-items-center gap-2 justify-content-center my-3">
@@ -425,9 +477,6 @@
                             </div>
                         </div>
 
-                        <p class="py-2 m-0" style="font-size: 0.95rem;">Com grande alegria, realizaremos a nossa
-                            cerimônia de casamento:</p>
-
                         <div class="overflow-x-hidden">
                             <div class="py-2" data-aos="fade-right" data-aos-duration="1500">
                                 <h2 class="font-esthetic m-0 py-2" style="font-size: 2rem;">Cerimônia</h2>
@@ -441,14 +490,14 @@
 
                             <div class="py-2" data-aos="fade-left" data-aos-duration="1500">
                                 <h2 class="font-esthetic m-0 py-2" style="font-size: 2rem;">Recepção</h2>
-                                <p style="font-size: 0.85rem;font-style: italic;">Não faremos festa, mas convidamos quem
-                                    quiser celebrar
-                                    conosco a se juntar a nós em um jantar</p>
+                                <p style="font-size: 0.85rem;font-style: italic;">Embora não faremos uma comemoração
+                                    tradicional, convidamos você para um jantar de celebração. Ficaremos muito felizes
+                                    com a sua companhia.</p>
                                 <p style="font-size: 0.75rem;font-style: italic;">O jantar deve custar em torno de
                                     100-150 R$ por pessoa e vocês podem consultar o cardápio <a
                                         href="https://www.canva.com/design/DAGnkV8xB9M/CqF0y5rKC5JRV7zTgIF7mQ/view?utm_content=DAGnkV8xB9M&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hfb01622dfb"
                                         target="_blank">aqui</a></p>
-                                <p style="font-size: 0.70rem;font-style: italic;">PS: agradem o noivo que ele patrocina
+                                <p style="font-size: 0.60rem;font-style: italic;">PS: agradem o noivo que ele patrocina
                                     algumas bebidas haha ;)</p>
                                 <p style="font-size: 0.95rem;">Às 19h00</p>
                                 <p style="font-size: 1rem;">Recepção Fictícia</p>
@@ -458,7 +507,98 @@
                         </div>
                     </div>
                 </section>
+                <!-- Presentes -->
+                <section style="background-color: var(--surface);" class="py-5" id="gifts">
+                    <div class="container text-center overflow-x-hidden">
+                        <h2 class="font-esthetic py-4 m-0" style="font-size: 2.25rem;">Presentes</h2>
 
+                        <p class="py-2 m-0 px-3" style="font-size: 0.95rem;">
+                            Para nós, a presença de cada um já é um presente inestimável. Mas, para aqueles que desejam
+                            nos presentear de forma material, deixamos algumas sugestões. <br> Optamos por não fazer uma
+                            lista tradicional, pois estamos focados em realizar a viagem dos nossos sonhos. Por isso,
+                            preparamos uma lista com itens e valores variados que nos ajudarão com o orçamento da nossa
+                            lua de mel.
+                        </p>
+
+                        <div data-aos="fade-right" data-aos-duration="1500">
+                            <h3 class="font-esthetic m-0 py-2" style="font-size: 1.5rem;">Sobre a Viagem</h3>
+
+                            <div class="position-relative my-4 viagem-timeline">
+                                <!-- Dotted line background -->
+                                <div class="position-absolute top-50 start-0 w-100 border-top border-2 border-dashed"
+                                    style="transform: translateY(-50%); z-index: 0;"></div>
+
+                                <!-- Animated plane -->
+                                <div class="position-absolute top-50 plane-animation" style="z-index: 3;">
+                                    <i class="fa-solid fa-plane"></i>
+                                </div>
+
+                                <!-- Images -->
+                                <div class="row position-relative z-2">
+                                    <div class="col-4 text-center">
+                                        <img src="./assets/images/placeholder.webp"
+                                            data-src="./assets/images/london.png" alt="Londres"
+                                            class="img-fluid rounded-circle shadow border border-3 border-white viagem-img">
+                                        <p class="mt-2 mb-0 small fw-bold font-esthetic"
+                                            style="color: #7e513b; font-size: 1.1rem;">Londres</p>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <img src="./assets/images/placeholder.webp" data-src="./assets/images/paris.png"
+                                            alt="Paris"
+                                            class="img-fluid rounded-circle shadow border border-3 border-white viagem-img">
+                                        <p class="mt-2 mb-0 small fw-bold font-esthetic"
+                                            style="color: #7e513b; font-size: 1.1rem;">Paris</p>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <img src="./assets/images/placeholder.webp" data-src="./assets/images/rome.png"
+                                            alt="Roma"
+                                            class="img-fluid rounded-circle shadow border border-3 border-white viagem-img">
+                                        <p class="mt-2 mb-0 small fw-bold font-esthetic"
+                                            style="color: #7e513b; font-size: 1.1rem;">Roma</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="py-2 m-0 px-3" style="font-size: 0.95rem;">
+                                A viagem é a realização de um sonho do casal, nossa primeira viagem internacional
+                                juntos! Vamos visitar Londres, Paris e Roma e temos muitas coisas planejadas que estão
+                                ligadas aos nossos gostos e sonhos. Londres será a primeira parada, a cidade do One
+                                Direction, do Harry Styles e do Harry Potter (tá bom, confessamos, os dois primeiros são
+                                exigências da noiva haha). Paris é a cidade luz, do romance e da moda, mas também será
+                                nossa visita à Disney (presente para nossas crianças interiores). Roma é a cidade
+                                eterna, com uma história incrível e uma gastronomia que nós amamos (nos esperem na volta
+                                com uns kgs a mais).
+                            </p>
+                        </div>
+
+                        <div data-aos="fade-left" data-aos-duration="1500">
+                            <h3 class="font-esthetic m-0 py-2" style="font-size: 1.5rem;">Como Funcionam os Presentes
+                            </h3>
+                            <p class="px-3" style="font-size: 0.95rem;">
+                                Em nosso site, você encontrará opções divertidas e simbólicas para nos presentear e
+                                fazer parte dessa aventura conosco. Pensamos nos presentes com muito cuidado para
+                                incluir vocês, pessoas que amamos, na viagem conosco de alguma forma.
+                                <br>Cada presente está ligado a algo que queremos fazer, visitar ou alguma lembrança que
+                                queremos levar para casa, alguns presentes são únicos e vão sumir da lista assim que
+                                alguém os escolher, já outros podem ser dados mais de uma vez.
+                                <br><br><strong>AGORA O MAIS IMPORTANTE:</strong> desenhamos uma sessão completa de
+                                pequenos desafios, com valores variados que vocês podem contratar-nos para realizar na
+                                viagem, usem as observações se vocês quiserem ser marcados em algum desafio, quiserem
+                                algum detalhe específico ou quiserem especificar quem vocês querem que realize o
+                                desafio, SEJAM CRIATIVOS (mas não muito, somos tímidos hahaha)!
+
+                            </p>
+                            <p class="px-3" style="font-size: 0.85rem;">
+                                Todos os presentes podem ser pagos no Pix ou cartão e até mesmo parcelados, o site
+                                aplica uma taxinha no parcelamento, mas ajuda quem não quiser pagar à vista.
+                            </p>
+                            <a href="https://example.com/wedding#presentes" target="_blank"
+                                class="btn btn-primary-terracotta shadow-sm px-4 py-3 mt-4">
+                                <i class="fa-solid fa-gift me-2"></i>Ver Lista de Presentes
+                            </a>
+                        </div>
+                    </div>
+                </section>
 
 
                 <!-- End Of Invitation -->
@@ -471,7 +611,8 @@
 
                         <div class="row align-items-center justify-content-between flex-column pb-3">
                             <div class="col-auto">
-                                <small>Feito com<i class="fa-solid fa-heart mx-1"></i>por Dewanakl</small>
+                                <small>Template feito com<i class="fa-solid fa-heart mx-1"></i>por Dewanakl</small>
+                                <br><small>Adaptado e personalizado por fhbkoller (o noivo)</small>
                             </div>
                             <div class="col-auto">
                                 <small><i class="fa-brands fa-github me-1"></i><a target="_blank"
@@ -497,6 +638,12 @@
                         <a class="nav-link" href="#wedding-date">
                             <i class="fa-solid fa-calendar-check"></i>
                             <span class="d-block" style="font-size: 0.7rem;">Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gifts">
+                            <i class="fa-solid fa-gift"></i>
+                            <span class="d-block" style="font-size: 0.7rem;">Presentes</span>
                         </a>
                     </li>
                 </ul>
@@ -576,8 +723,8 @@
     <div class="loading-page bg-white-black" id="loading" style="opacity: 1;">
         <div class="d-flex justify-content-center align-items-center vh-100 overflow-y-auto">
             <div class="d-flex flex-column width-loading text-center">
-                <img src="./assets/images/placeholder.webp" data-src="./assets/images/icon-192x192.png"
-                    fetchpriority="high" class="img-fluid mb-3 mx-auto object-fit-cover opacity-0" alt="icon"
+                <img src="./assets/images/placeholder.webp" data-src="./assets/images/seal.png" fetchpriority="high"
+                    class="img-fluid mb-3 mx-auto object-fit-cover opacity-0" alt="icon"
                     style="width: 3.5rem; height: 3.5rem;">
                 <div class="progress" role="progressbar" style="height: 0.5rem;" aria-label="progress bar">
                     <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
