@@ -1,9 +1,6 @@
 name: Code Analysis and Deploy
 
-on:
-  push:
-    branches:
-      - "4.x"
+on: [push]
 
 jobs:
   analyze-code:
@@ -40,6 +37,7 @@ jobs:
 
   deploy:
     needs: analyze-code
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     permissions:
       contents: write
