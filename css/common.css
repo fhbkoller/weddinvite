@@ -114,7 +114,3 @@ html[data-bs-theme="light"] .bg-overlay-auto {
 .hover-wrapper:hover .hover-area {
     display: flex;
 }
-
-.gif-image {
-    max-height: 10rem;
-}

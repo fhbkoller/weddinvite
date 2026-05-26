@@ -4,16 +4,10 @@ import { util } from '../../common/util.js';
 import { loader } from '../../libs/loader.js';
 import { theme } from '../../common/theme.js';
 import { lang } from '../../common/language.js';
-import { storage } from '../../common/storage.js';
 import { offline } from '../../common/offline.js';
 import { pool } from '../../connection/request.js';
 
 export const guest = (() => {
-
-    /**
-     * @type {ReturnType<typeof storage>|null}
-     */
-    let information = null;
 
     /**
      * @returns {void}
@@ -78,11 +72,6 @@ export const guest = (() => {
             util.safeInnerHTML(div, template);
 
             guestName?.appendChild(div);
-        }
-
-        const form = document.getElementById('form-name');
-        if (form) {
-            form.value = information.get('name') ?? name;
         }
     };
 
@@ -171,23 +160,6 @@ export const guest = (() => {
     };
 
     /**
-     * @param {HTMLDivElement} div 
-     * @returns {void}
-     */
-    const showStory = (div) => {
-        if (navigator.vibrate) {
-            navigator.vibrate(500);
-        }
-
-        util.changeOpacity(div, false).then((e) => e.remove());
-    };
-
-    /**
-     * @returns {void}
-     */
-    const closeInformation = () => information.set('info', true);
-
-    /**
      * @returns {void}
      */
     const normalizeArabicFont = () => {
@@ -265,15 +237,6 @@ export const guest = (() => {
         normalizeArabicFont();
         buildGoogleCalendar();
 
-        const formPresence = document.getElementById('form-presence');
-        if (formPresence && information.has('presence')) {
-            formPresence.value = information.get('presence') ? '1' : '2';
-        }
-
-        if (information.get('info')) {
-            document.getElementById('information')?.remove();
-        }
-
         // wait until welcome screen is show.
         await util.changeOpacity(document.getElementById('welcome'), true);
 
@@ -288,8 +251,6 @@ export const guest = (() => {
         lang.init();
         offline.init();
         progress.init();
-
-        information = storage('information');
 
         const img = image.init();
         const lib = loaderLibs();
@@ -320,8 +281,6 @@ export const guest = (() => {
             theme,
             guest: {
                 open,
-                showStory,
-                closeInformation,
             },
         };
     };
