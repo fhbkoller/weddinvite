@@ -227,18 +227,6 @@ svg {
     }
 }
 
-.opening .flap-left {
-    animation: openEnvelopeLeft 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-}
-
-.opening .flap-right {
-    animation: openEnvelopeRight 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-}
-
-.opening .wax-seal {
-    animation: fadeOutSeal 0.5s ease-in forwards;
-    pointer-events: none;
-}
 
 .env-container {
     position: fixed;
@@ -340,6 +328,19 @@ svg {
 
 .wax-seal:hover {
     transform: translate(-50%, -50%) scale(1.05);
+}
+
+.opening .flap-left {
+    animation: openEnvelopeLeft 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.opening .flap-right {
+    animation: openEnvelopeRight 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.opening .wax-seal {
+    animation: fadeOutSeal 0.5s ease-in forwards;
+    pointer-events: none;
 }
 
 .seal-img-container {
