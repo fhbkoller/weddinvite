@@ -31,6 +31,9 @@ if (fs.existsSync(indexHtmlPath)) {
         html = html.replace(/João e Maria/g, process.env.WEDDING_NAMES);
         html = html.replace(/João &amp; Maria/g, process.env.WEDDING_NAMES.replace(/&/g, '&amp;'));
     }
+    if (process.env.WEDDING_SHORT_NAMES) {
+        html = html.replace(/J&amp;M/g, process.env.WEDDING_SHORT_NAMES.replace(/&/g, '&amp;'));
+    }
     if (process.env.CEREMONY_LOCATION) html = html.replace(/Local da Cerimônia Fictícia/g, process.env.CEREMONY_LOCATION);
     if (process.env.RECEPTION_NAME) html = html.replace(/Recepção Fictícia/g, process.env.RECEPTION_NAME);
     if (process.env.RECEPTION_ADDRESS) html = html.replace(/Endereço Fictício da Recepção, 123/g, process.env.RECEPTION_ADDRESS);
