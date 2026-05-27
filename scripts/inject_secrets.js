@@ -39,6 +39,14 @@ let indexHtmlPath = path.join(publicDir, 'index.html');
 if (fs.existsSync(indexHtmlPath)) {
     let html = fs.readFileSync(indexHtmlPath, 'utf8');
 
+    console.log('--- PLACEHOLDERS IN HTML ---');
+    console.log('Contains "João e Maria":', html.includes('João e Maria'));
+    console.log('Contains "João &amp; Maria":', html.includes('João &amp; Maria'));
+    console.log('Contains "J&amp;M":', html.includes('J&amp;M'));
+    console.log('Contains "2099-12-31":', html.includes('2099-12-31'));
+    console.log('Contains "Local da Cerimônia":', html.includes('Local da Cerimônia Fictícia'));
+    console.log('----------------------------');
+    
     if (process.env.WEDDING_DATE_TIME) html = html.replace(/2099-12-31 15:30:00/g, process.env.WEDDING_DATE_TIME);
     if (process.env.WEDDING_DATE_TEXT) html = html.replace(/Sábado, 31 de Dezembro de 2099/g, process.env.WEDDING_DATE_TEXT);
     if (process.env.WEDDING_NAMES) {
