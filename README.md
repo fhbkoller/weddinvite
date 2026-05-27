@@ -2,7 +2,7 @@
 
 ![Thumbnail](/assets/images/banner.webp)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/462b593f-401c-48f0-81e9-363b53e00496/deploy-status)](https://app.netlify.com/projects/bfweddinvite/deploys)
+[![Code Analysis and Deploy](https://github.com/fhbkoller/weddinvite/actions/workflows/cicd.yml/badge.svg)](https://github.com/fhbkoller/weddinvite/actions/workflows/cicd.yml)
 [![GitHub repo size](https://img.shields.io/github/repo-size/fhbkoller/weddinvite?color=brightgreen)](https://github.com/fhbkoller/weddinvite)
 [![GitHub License](https://img.shields.io/github/license/fhbkoller/weddinvite?color=brightgreen)](https://github.com/fhbkoller/weddinvite/blob/master/LICENSE)
 

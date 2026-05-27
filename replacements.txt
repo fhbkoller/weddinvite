@@ -1,0 +1,9 @@
+João e Maria==>João e Maria
+João & Maria==>João & Maria
+João & Maria==>João & Maria
+2099-12-31 15:30:00==>2099-12-31 15:30:00
+Sábado, 31 de Dezembro de 2099==>Sábado, 31 de Dezembro de 2099
+Local da Cerimônia Fictícia==>Local da Cerimônia Fictícia
+Recepção Fictícia==>Recepção Fictícia
+Endereço Fictício da Recepção, 123==>Endereço Fictício da Recepção, 123
+https://example.com/wedding==>https://example.com/wedding

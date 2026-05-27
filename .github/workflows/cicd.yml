@@ -65,20 +65,34 @@ jobs:
         run: npm install && npm install -g netlify-cli
 
       - name: Run Build
-        run: npm run build
+        run: npm run build:public
+
+      - name: Inject Secrets
+        env:
+          GUESTS_JSON: ${{ secrets.GUESTS_JSON }}
+          WEDDING_DATE_TIME: ${{ secrets.WEDDING_DATE_TIME }}
+          WEDDING_DATE_TEXT: ${{ secrets.WEDDING_DATE_TEXT }}
+          WEDDING_NAMES: ${{ secrets.WEDDING_NAMES }}
+          CEREMONY_LOCATION: ${{ secrets.CEREMONY_LOCATION }}
+          RECEPTION_NAME: ${{ secrets.RECEPTION_NAME }}
+          RECEPTION_ADDRESS: ${{ secrets.RECEPTION_ADDRESS }}
+          WEDDING_URL: ${{ secrets.WEDDING_URL }}
+          CASAR_PHOTO_1_URL: ${{ secrets.CASAR_PHOTO_1_URL }}
+          CASAR_PHOTO_3_URL: ${{ secrets.CASAR_PHOTO_3_URL }}
+        run: node scripts/inject_secrets.js
 
       - name: Add netlify.toml File for Headers
         run: |
-          echo "[[headers]]" > netlify.toml
-          echo "  for = \"/*\"" >> netlify.toml
-          echo "  [headers.values]" >> netlify.toml
-          echo "    Access-Control-Allow-Origin = \"*\"" >> netlify.toml
-          echo "    Access-Control-Allow-Headers = \"*\"" >> netlify.toml
-          echo "    Access-Control-Allow-Methods = \"*\"" >> netlify.toml
-          echo "    Access-Control-Expose-Headers = \"*\"" >> netlify.toml
+          echo "[[headers]]" > public/netlify.toml
+          echo "  for = \"/*\"" >> public/netlify.toml
+          echo "  [headers.values]" >> public/netlify.toml
+          echo "    Access-Control-Allow-Origin = \"*\"" >> public/netlify.toml
+          echo "    Access-Control-Allow-Headers = \"*\"" >> public/netlify.toml
+          echo "    Access-Control-Allow-Methods = \"*\"" >> public/netlify.toml
+          echo "    Access-Control-Expose-Headers = \"*\"" >> public/netlify.toml
 
       - name: Deploy to Netlify
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: netlify deploy --prod --telemetry-disable --dir=. --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID
+        run: netlify deploy --prod --telemetry-disable --dir=public --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID

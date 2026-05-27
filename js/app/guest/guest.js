@@ -51,15 +51,15 @@ export const guest = (() => {
 
         if (guestId) {
             try {
-                const response = await fetch('./guests.json');
+                const response = await fetch(`./guests/${guestId}.json`);
                 if (response.ok) {
-                    const guestsMap = await response.json();
-                    if (guestsMap[guestId]) {
-                        name = guestsMap[guestId];
+                    const guestData = await response.json();
+                    if (guestData.name) {
+                        name = guestData.name;
                     }
                 }
             } catch (error) {
-                console.error("Failed to load guests list", error);
+                console.error("Failed to load guest", error);
             }
         }
 

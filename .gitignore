@@ -5,3 +5,6 @@ package-lock.json
 dist
 public
 .claude/
+guests.json
+guests.csv
+generated_links.csv
