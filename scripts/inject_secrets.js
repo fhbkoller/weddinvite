@@ -76,4 +76,5 @@ Promise.all(assetsToDownload.map(async item => {
     }
 })).then(() => {
     console.log('Asset injection complete.');
+    process.exit(0);
 });
