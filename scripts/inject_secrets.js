@@ -24,7 +24,7 @@ if (guestsEnv) {
 let indexHtmlPath = path.join(publicDir, 'index.html');
 if (fs.existsSync(indexHtmlPath)) {
     let html = fs.readFileSync(indexHtmlPath, 'utf8');
-    
+
     if (process.env.WEDDING_DATE_TIME) html = html.replace(/2099-12-31 15:30:00/g, process.env.WEDDING_DATE_TIME);
     if (process.env.WEDDING_DATE_TEXT) html = html.replace(/Sábado, 31 de Dezembro de 2099/g, process.env.WEDDING_DATE_TEXT);
     if (process.env.WEDDING_NAMES) {
@@ -38,7 +38,7 @@ if (fs.existsSync(indexHtmlPath)) {
     if (process.env.RECEPTION_NAME) html = html.replace(/Recepção Fictícia/g, process.env.RECEPTION_NAME);
     if (process.env.RECEPTION_ADDRESS) html = html.replace(/Endereço Fictício da Recepção, 123/g, process.env.RECEPTION_ADDRESS);
     if (process.env.WEDDING_URL) html = html.replace(/https:\/\/example\.com\/wedding/g, process.env.WEDDING_URL);
-    
+
     fs.writeFileSync(indexHtmlPath, html);
     console.log('Injected config into index.html');
 }
@@ -54,7 +54,7 @@ const downloadFile = (url, dest) => {
             response.pipe(file);
             file.on('finish', () => { file.close(); resolve(); });
         }).on('error', (err) => {
-            fs.unlink(dest, () => {});
+            fs.unlink(dest, () => { });
             reject(err);
         });
     });
@@ -76,5 +76,4 @@ Promise.all(assetsToDownload.map(async item => {
     }
 })).then(() => {
     console.log('Asset injection complete.');
-    process.exit(0);
 });

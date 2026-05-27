@@ -69,16 +69,17 @@ jobs:
 
       - name: Inject Secrets
         env:
-          GUESTS_JSON: ${{ secrets.GUESTS_JSON }}
-          WEDDING_DATE_TIME: ${{ secrets.WEDDING_DATE_TIME }}
-          WEDDING_DATE_TEXT: ${{ secrets.WEDDING_DATE_TEXT }}
-          WEDDING_NAMES: ${{ secrets.WEDDING_NAMES }}
-          CEREMONY_LOCATION: ${{ secrets.CEREMONY_LOCATION }}
-          RECEPTION_NAME: ${{ secrets.RECEPTION_NAME }}
-          RECEPTION_ADDRESS: ${{ secrets.RECEPTION_ADDRESS }}
-          WEDDING_URL: ${{ secrets.WEDDING_URL }}
-          CASAR_PHOTO_1_URL: ${{ secrets.CASAR_PHOTO_1_URL }}
-          CASAR_PHOTO_3_URL: ${{ secrets.CASAR_PHOTO_3_URL }}
+          GUESTS_JSON: ${{ secrets.GUESTS_JSON || vars.GUESTS_JSON }}
+          WEDDING_DATE_TIME: ${{ secrets.WEDDING_DATE_TIME || vars.WEDDING_DATE_TIME }}
+          WEDDING_DATE_TEXT: ${{ secrets.WEDDING_DATE_TEXT || vars.WEDDING_DATE_TEXT }}
+          WEDDING_NAMES: ${{ secrets.WEDDING_NAMES || vars.WEDDING_NAMES }}
+          WEDDING_SHORT_NAMES: ${{ secrets.WEDDING_SHORT_NAMES || vars.WEDDING_SHORT_NAMES }}
+          CEREMONY_LOCATION: ${{ secrets.CEREMONY_LOCATION || vars.CEREMONY_LOCATION }}
+          RECEPTION_NAME: ${{ secrets.RECEPTION_NAME || vars.RECEPTION_NAME }}
+          RECEPTION_ADDRESS: ${{ secrets.RECEPTION_ADDRESS || vars.RECEPTION_ADDRESS }}
+          WEDDING_URL: ${{ secrets.WEDDING_URL || vars.WEDDING_URL }}
+          CASAR_PHOTO_1_URL: ${{ secrets.CASAR_PHOTO_1_URL || vars.CASAR_PHOTO_1_URL }}
+          CASAR_PHOTO_3_URL: ${{ secrets.CASAR_PHOTO_3_URL || vars.CASAR_PHOTO_3_URL }}
         run: node scripts/inject_secrets.js
 
       - name: Add netlify.toml File for Headers
