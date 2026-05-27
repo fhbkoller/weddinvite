@@ -20,6 +20,20 @@ if (guestsEnv) {
     }
 }
 
+console.log('--- DEBUG ENVS ---');
+console.log('GUESTS_JSON is set:', !!process.env.GUESTS_JSON);
+console.log('WEDDING_DATE_TIME is set:', !!process.env.WEDDING_DATE_TIME);
+console.log('WEDDING_DATE_TEXT is set:', !!process.env.WEDDING_DATE_TEXT);
+console.log('WEDDING_NAMES is set:', !!process.env.WEDDING_NAMES);
+console.log('WEDDING_SHORT_NAMES is set:', !!process.env.WEDDING_SHORT_NAMES);
+console.log('CEREMONY_LOCATION is set:', !!process.env.CEREMONY_LOCATION);
+console.log('RECEPTION_NAME is set:', !!process.env.RECEPTION_NAME);
+console.log('RECEPTION_ADDRESS is set:', !!process.env.RECEPTION_ADDRESS);
+console.log('WEDDING_URL is set:', !!process.env.WEDDING_URL);
+console.log('CASAR_PHOTO_1_URL is set:', !!process.env.CASAR_PHOTO_1_URL);
+console.log('CASAR_PHOTO_3_URL is set:', !!process.env.CASAR_PHOTO_3_URL);
+console.log('------------------');
+
 // 2. Inject Config & URLs into HTML
 let indexHtmlPath = path.join(publicDir, 'index.html');
 if (fs.existsSync(indexHtmlPath)) {
